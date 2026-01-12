@@ -1,0 +1,415 @@
+:root{
+  --blue-theme-light-top : linear-gradient(#1378fc, #01256d);
+  --blue-theme-dark-top : linear-gradient(#01256d , #1378fc);
+  --blue-theme-light-left : linear-gradient(#1378fc, #01256d);
+  --blue-theme-dark-left : linear-gradient(#01256d , #1378fc);
+  --dark-blue : #01256d  ;
+  --blue-combo : #165ebb ; 
+  --light-blue : #1378fc ;
+  --white: #fff;
+  --greyWhite: #ffffff75 ;
+
+  --primary-color : #50BEC2 ;
+
+
+  scrollbar-width: auto;
+  scrollbar-width: none;
+  scrollbar-width: 1 ;
+
+}
+body{
+
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+   
+  ::-webkit-scrollbar-thumb {
+    background-color: #50bec2fd;
+    outline: 1px solid rgba(64, 64, 66, 0.733);
+  }
+}
+
+.App {
+  text-align: center;
+}
+
+/* Animation is here */
+@keyframes flipBackToFront {
+  0% {
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+    /* transition: transform 2s ease; */
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes leftToRight {
+  0%{
+    left: -250px;
+  }
+
+  100%{
+    left: 0;
+  }
+}
+
+@keyframes leftToRightSub {
+  0%{
+    left: 0;
+  }
+
+  100%{
+    left: 250px;
+  }
+}
+
+
+/* Common CSS Classes */
+.Blue-liniar-background {
+  background: var(--blue-theme-dark-top);
+}
+
+.Blue-combo-border{
+  border-color: var(--blue-combo);
+}
+
+.Blue-liniar-border{
+  border-image: var(--blue-theme-dark-top) 1
+}
+
+.flip-backToFront {
+  animation-name: flipBackToFront;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+
+.Slide-leftToRight{
+  animation-name: leftToRight;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+.leftToRightSub{
+  animation-name: leftToRightSub;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+
+
+.bg-Blue-col-White{
+  color: var(--white);
+  background: var(--blue-theme-dark-top);
+}
+.bg-Blue-col-White:hover{
+  color: var(--blue-combo);
+  background: var(--white);
+}
+
+.bg-white-col-blue{
+  color: var(--blue-combo);
+  background: var(--white);
+}
+.bg-white-col-blue:hover{
+  color: var(--white);
+  background: var(--blue-theme-dark-top);
+}
+
+.primary-color{
+  color: var(--primary-color);
+}
+.white-color{
+  color: var(--white);
+}
+
+.grey-white{
+  color: var(--greyWhite);
+}
+
+.grey-white-border{
+  border-color: var(--greyWhite);
+}
+.blue-color-combo{
+  color:var(--blue-combo)
+}
+
+.admin-button{
+  color: var(--white);
+  background: var(--blue-theme-dark-top);
+  border: none;
+  padding: 8px 25px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer !important;
+}
+
+/*  */
+
+
+
+/* login and signup Page css */
+
+
+/* Navigation CSS */
+.admin-nav-menu{
+  position: sticky;
+  top: 0;
+  z-index: 9;
+}
+.admin-nav-menu .admin-nav-Avtar {
+  border-radius: 50%;
+}
+
+.navbar-resume {
+  position: relative;
+
+}
+
+.resume-sub-nav {
+  position: absolute !important;
+  z-index: 8;
+  top: -8px;
+  left: 250px;
+  display: none;
+}
+.navbar-resume:hover .resume-sub-nav{
+  display: unset;
+}
+.sub-nav-arrow-icon {
+  transition: 700ms;
+}
+.navbar-resume:hover .sub-nav-arrow-icon{
+  transform: rotate(90deg);
+  transition: 700ms;
+}
+
+/* .admin-menu-items:hover{
+  font-weight: bold;
+  background: var(--blue-theme-dark-top);
+  color: #fff;
+  transition: 0.5s ease;
+} */
+
+
+/*  */
+
+/* Sidebar CSS */
+.Self-Sidebar .admin-menu-items{
+  text-decoration: none;
+}
+.Self-Sidebar .admin-menu-items:hover svg{
+  color: var(--white)
+}
+.Self-Sidebar .admin-menu-items.active{
+  background: var(--blue-theme-dark-top);
+  color: var(--white);
+}
+.Self-Sidebar .admin-menu-items.active svg{
+  color: var(--white);
+}
+
+
+/*  */
+
+
+/* Content CSS */
+/* .AllSection{
+  height: 100vh;
+} */
+.contentBar {
+  width: 100%;
+}
+/*  */
+
+
+/* Signup CSS */
+.sign-in {
+  margin: 150px ;
+  height: 100%;
+  border: 5px solid;
+  border-image: var(--blue-theme-dark-top) 1;
+}
+
+.sign-in .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/*  */
+
+
+/* Page not found CSS */
+.page404 h1{
+  text-align: center;
+  color: red;
+  font-size: 200px;
+  margin: 100px 0 0 0 ;
+}
+.page404 h3{
+  text-align: center;
+  font-size: 30px;
+  margin: 0;
+  letter-spacing: 7px;
+}
+
+
+/* Profile page css  */
+.admin-profile-image img{
+  border-radius: 50%;
+  border: 5px solid var(--blue-combo) ;
+  padding: 2px ; 
+}
+
+.imageUploadIcon{
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 2px;
+  border: 1px solid;
+  border-radius: 20px;
+  background: var(--white);
+  z-index: 3;
+  cursor: pointer;
+  font-size: 30px !important;
+}
+
+
+
+/* Education section */
+.education-all-cards .slick-slide{
+  padding: 0 10px ;
+}
+
+.education-card{
+  background: url("../src/Utilities/Images/edu-card-bg.jpg")no-repeat ;
+  background-size: cover;
+  height: 270px;
+  width: 450px;
+  color: var(--white);
+}
+
+.education-card .card-image{
+  box-shadow: 1px 1px 20px black;
+  transform: rotate(45deg) scale(0.85);
+  width: 120px;
+  height: 120px;
+  padding: 0;
+  overflow: hidden;
+  transition: 700ms;
+}
+
+.education-card img{
+    width: 100%;
+    height: 100%;
+    border: 3px solid black;
+    box-shadow: 1px 1px 20px black;
+    transform: scale(1.55) rotate(-45deg);
+    transition: 700ms;
+}
+
+.education-card:hover .card-image{
+  transform: rotate(0deg);
+  transition: 700ms;
+}
+
+.education-card:hover img{
+  transform: scale(1) rotate(0deg);
+  transition: 700ms;
+  border: 1px solid black;
+
+}
+
+.education-card .card-icon{
+  display: none;
+  /* transition: 700ms; */
+}
+.education-card:hover .card-icon{
+  display: unset;
+  transition: 700ms;
+}
+
+.education-card .education-details{
+  box-shadow: 1px 1px 20px black;
+  width: 100px;
+  height: 100px;
+  padding: 0;
+  overflow: hidden;
+  transition: 400ms;
+  border-radius: 50%;
+  transform: scale(1.2);
+}
+
+.education-card:hover .education-details{
+  /* width: 110px;
+  height: 110px; */
+  transition: 400ms;
+  transform: scale(1);
+}
+
+
+/* Experience css  */
+.experiece-card{
+  max-height: 300px;
+}
+
+
+ .experiece-card-title{
+  background: linear-gradient(90deg, rgba(255, 255, 255, .1) 0%, rgba(255, 255, 255, 0) 100%);
+  padding: 8px 0;
+  border-radius: 20px;
+}
+.experiece-card-title .counting{
+  background-color: var(--primary-color);
+  padding: 10px 16px;
+  border-radius: 20px;
+}
+.experiece-card-content{
+  overflow: hidden;
+  padding: 20px 40px;
+  /* border-left: 1px solid; */
+  margin-left: 20px;
+}
+
+.experiece-card-content .aboutExperience{
+  height: 90px;
+  overflow: hidden;
+  margin: 0;
+  padding-right: 10px;
+}
+.experiece-card:hover .aboutExperience{
+  overflow: auto;
+}
+
+/* What i do section  */
+.whatIDo .content-box{
+  width: 300px;
+}
+
+
+/* About me section */
+.skill{
+  position: relative;
+}
+.skill .skill-percent{
+  position: absolute;
+  top: 0;
+}
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 767px) {
+  .fullWidth {
+    padding: 1rem !important;
+  } 
+}
