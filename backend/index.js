@@ -17,6 +17,6 @@ const AdminRouterAPI = require('./Router/AdminRouterAPI')
 app.use("/admin", AdminRouterAPI );
 
 
-app.listen(port, ()=> {
-   console.log(`Server is running on port http://localhost:${port}`)
-})
+// app.listen(port, ()=> {
+//    console.log(`Server is running on port http://localhost:${port}`)
+// })
