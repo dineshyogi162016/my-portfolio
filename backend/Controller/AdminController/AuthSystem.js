@@ -3,7 +3,7 @@ const LoginSchema = require("../../Models/LoginSchema")
 const secretKey = process.env.JWT_SECRET_KEY || "MySecretKey";
 let saltRound = 8
 const jwt = require("jsonwebtoken")
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcryptjs")
 
 const Signup = async (req, res) => {
    try {   

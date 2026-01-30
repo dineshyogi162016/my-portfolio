@@ -1,7 +1,10 @@
-const express = require("express")
+// const express = require("express")
+import express from "express";
 const app = express()
-const cors = require("cors")
-const dotenv = require("dotenv")
+// const cors = require("cors")
+import cors from "cors";
+// const dotenv = require("dotenv")
+import dotenv from "dotenv"
 dotenv.config()
 const port = process.env.PORT_VALUE || 4200
 
@@ -9,11 +12,11 @@ app.use(express.json())
 app.use(cors())
 
 // Router for User API's 
-const UserRouterAPI = require('./Router/UserRouterAPI') 
+import UserRouterAPI from './Router/UserRouterAPI.js' 
 app.use("/user", UserRouterAPI );
 
 // Router for Admin API's 
-const AdminRouterAPI = require('./Router/AdminRouterAPI') 
+import AdminRouterAPI from './Router/AdminRouterAPI.js' 
 app.use("/admin", AdminRouterAPI );
 
 
