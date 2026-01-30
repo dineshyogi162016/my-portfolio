@@ -11,6 +11,12 @@ const port = process.env.PORT_VALUE || 4200
 app.use(express.json())
 app.use(cors())
 
+
+// Testing End Point 
+app.get("/", (req, res)=>{
+   res.send("My-Portfolio server running successfylly")
+})
+
 // Router for User API's 
 import UserRouterAPI from './Router/UserRouterAPI.js' 
 app.use("/user", UserRouterAPI );
@@ -20,8 +26,8 @@ import AdminRouterAPI from './Router/AdminRouterAPI.js'
 app.use("/admin", AdminRouterAPI );
 
 
-// app.listen(port, ()=> {
-//    console.log(`Server is running on port http://localhost:${port}`)
-// })
+app.listen(port, ()=> {
+   console.log(`Server is running on port http://localhost:${port}`)
+})
 
 export default app;
