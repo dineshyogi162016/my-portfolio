@@ -5,11 +5,15 @@ node_modules/
 /node_modules
 backend/node_modules/
 
-.vercel
+# .vercel
 
 # env files
 .env
 .env.*
+
+# my-portfolio/build
+my-portfolio/build
+
 
 # dependencies
 /.pnp
