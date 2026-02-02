@@ -12,6 +12,7 @@ backend/node_modules/
 .env.*
 
 # my-portfolio/build
+build
 my-portfolio/build
 
 
