@@ -88,7 +88,7 @@ const AuthProvider  = ({children}) => {
     try {
         const result =await axios.get(`${API_URL}/admin/profile/getProfile`, {headers});
 
-        if(result.data.response.adminProfile){
+        if(result.data && result.data.response && result.data.response.adminProfile){
             const imageUrl = result.data.response.adminProfile.profileImage
             const User = result.data.response.user
             const UserName = result.data.response.adminProfile.userName
@@ -99,10 +99,8 @@ const AuthProvider  = ({children}) => {
                 userName : UserName
             })
         }
-
-
     } catch (error) {
-        CommonAlert("Something went wrong", "warning")
+        console.error("Get Profile error:", error);
     }
     
 }

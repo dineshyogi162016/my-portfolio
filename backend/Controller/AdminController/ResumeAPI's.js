@@ -3,7 +3,6 @@ const ResumeSchema = require("../../Models/ResumeSchema")
 
 // API's for Education 
 const getEducationData = async (req, res) => {
-   // const {education, experience, headers } = (req.body)
    const user = req.headers.user
 
    try {
@@ -11,18 +10,28 @@ const getEducationData = async (req, res) => {
       const response = await ResumeSchema.find({user: user})
 
       if(req.originalUrl === "/admin/getExperienceData"){
-         if(response[0].resumeData){
+         if(response && response.length > 0 && response[0].resumeData){
             res.json({
                success : "SuccessFully Get data",
-               response : response[0].resumeData.experience
+               response : response[0].resumeData.experience || []
+            })
+         } else {
+            res.json({
+               success : "SuccessFully Get data",
+               response : []
             })
          }
 
       }else if(req.originalUrl === "/admin/getEducationData"){
-         if(response[0].resumeData){
+         if(response && response.length > 0 && response[0].resumeData){
             res.json({
                success : "SuccessFully Get data",
-               response : response[0].resumeData.education
+               response : response[0].resumeData.education || []
+            })
+         } else {
+            res.json({
+               success : "SuccessFully Get data",
+               response : []
             })
          }
       }

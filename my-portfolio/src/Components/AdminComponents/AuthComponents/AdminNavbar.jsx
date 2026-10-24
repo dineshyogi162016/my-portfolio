@@ -189,12 +189,9 @@ const AdminNavbar = (props) => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <span className='mr-2 font-weight-bold'>Welcome, {JSON.parse(localStorage.getItem("MyPortfolioLogin")).userName} </span>
+              <span className='mr-2 font-weight-bold'>Welcome, {JSON.parse(localStorage.getItem("MyPortfolioLogin"))?.userName || "Admin"} </span>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                {/* <Avatar  src="../../../Utilities/Images/PortfolioLogo1.png" alt="Remy Sharp" /> */}
-
-                <img src={(profileData?`../../uploads/${profileData.profileImage}` : '../uploads/PortfolioLogo1.png')} alt="Logo" width={40} height={40} className='admin-nav-Avtar' />
-
+                <img src={profileData?.profileImage ? `${API_URL}/uploads/${profileData.profileImage}` : require('../../../Utilities/Images/PortfolioLogo1.png')} alt="Logo" width={40} height={40} className='admin-nav-Avtar' />
               </IconButton>
             </Tooltip>
             <Menu sx={{ mt: '45px', padding: "10px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{vertical: 'top', horizontal: 'right', }}keepMountedtransformOrigin={{

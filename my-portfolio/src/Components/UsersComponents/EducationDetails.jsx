@@ -9,6 +9,8 @@ import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import profileThumbnail from '../../Utilities/Images/profileUploadThumbnail.png';
+
 let API_URL = process.env.REACT_APP_API_URL
 
 
@@ -80,7 +82,7 @@ const EducationDetails = () => {
          <div className="education-card d-flex py-5 " style={{width: "450px"}}>
             <div className="col col-4 d-flex justify-content-center align-items-center" >
                <div className="card-image">
-                  <img src={profileData?`./uploads/${profileData.profileImage}` : "../uploads/profileUploadThumbnail.png"} alt="User Image" />
+                  <img src={profileData?.profileImage ? `${API_URL}/uploads/${profileData.profileImage}` : profileThumbnail} alt="User" />
                </div>
             </div>
             <div className="card-content card-body col col-8 text-right" style={{overflow: "hidden"}}>

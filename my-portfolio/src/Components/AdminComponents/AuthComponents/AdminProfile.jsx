@@ -41,7 +41,7 @@ const AdminProfile = () => {
             const MyPortFolioLogin = JSON.parse(localStorage.getItem("MyPortfolioLogin")) ;
             if(MyPortFolioLogin){
                const headers = {
-                  " Content-Type":'multipart/form-data',
+                  'Content-Type':'multipart/form-data',
                   'Authorization': MyPortFolioLogin.authToken, 
                   'user': MyPortFolioLogin.user
                };
@@ -121,7 +121,7 @@ const AdminProfile = () => {
             <form onSubmit={(e) => handleSubmitProfile(e)} >
 
                <div className="admin-profile-image mx-auto position-relative" style={{width: "180px", height: "180px"}}>
-                  <img  src={profileData? `../uploads/${profileData.profileImage}` : profileThumbnail} alt="Image Error" width={175} height={175} />
+                  <img  src={profileData?.profileImage ? `${API_URL}/uploads/${profileData.profileImage}` : profileThumbnail} alt="Profile" width={175} height={175} />
 
                   <AddPhotoAlternateIcon className='imageUploadIcon' onClick={handleImageChange} />
                </div>

@@ -1,5 +1,6 @@
 const ContactSchema = require("../../Models/ContactSchema")
 const ResumeSchema = require("../../Models/ResumeSchema")
+const WhatIDoSchema = require("../../Models/WhatIDoSchema")
 
 // Resume Data 
 const postMessage = async (req, res) => {
@@ -43,8 +44,6 @@ const postMessage = async (req, res) => {
 }
 
 const getResumeData = async (req, res) => {
-
-   // const {user} = (req.body).headers
    const user = req.headers.user
 
    try {
@@ -52,18 +51,28 @@ const getResumeData = async (req, res) => {
       const response = await ResumeSchema.find({ user: user })
 
       if (req.originalUrl === "/user/getExperienceData") {
-         if (response[0].resumeData) {
+         if (response && response.length > 0 && response[0].resumeData) {
             res.json({
                success: "SuccessFully Get data",
-               response: response[0].resumeData.experience
+               response: response[0].resumeData.experience || []
+            })
+         } else {
+            res.json({
+               success: "SuccessFully Get data",
+               response: []
             })
          }
 
       } else if (req.originalUrl === "/user/getEducationData") {
-         if (response[0].resumeData) {
+         if (response && response.length > 0 && response[0].resumeData) {
             res.json({
                success: "SuccessFully Get data",
-               response: response[0].resumeData.education
+               response: response[0].resumeData.education || []
+            })
+         } else {
+            res.json({
+               success: "SuccessFully Get data",
+               response: []
             })
          }
       }
@@ -79,24 +88,29 @@ const getWhatIDo = async (req, res) => {
    try {
 
       const response = await WhatIDoSchema.find({ user: user })
-      res.json({ check_data: "Something went wrong", response: response })
-
-      // if (req.originalUrl === "/user/getWhatIDoing") {
-      //    if (response[0].whatWeDo) {
-      //       res.json({
-      //          success: "SuccessFully Get data",
-      //          response: response[0].whatWeDo.whatIDoing
-      //       })
-      //    }
-
-      // } else if (req.originalUrl === "/user/getWhatIDid") {
-      //    if (response[0].whatWeDo) {
-      //       res.json({
-      //          success: "SuccessFully Get data",
-      //          response: response[0].whatWeDo.getWhatIDid
-      //       })
-      //    }
-      // }
+      if (response && response.length > 0 && response[0].whatWeDo) {
+         if (req.originalUrl === "/user/getWhatIDoing") {
+            res.json({
+               success: "SuccessFully Get data",
+               response: response[0].whatWeDo.whatIDoing || []
+            })
+         } else if (req.originalUrl === "/user/getWhatIDid") {
+            res.json({
+               success: "SuccessFully Get data",
+               response: response[0].whatWeDo.getWhatIDid || []
+            })
+         } else {
+            res.json({
+               success: "SuccessFully Get data",
+               response: response[0].whatWeDo
+            })
+         }
+      } else {
+         res.json({
+            success: "SuccessFully Get data",
+            response: []
+         })
+      }
 
    } catch (error) {
       res.json({ warning: "Something went wrong" })

@@ -2,26 +2,25 @@ const ProfileSchema = require("../../Models/ProfileSchema")
 const { updateOne } = require("../../Models/SignupSchema")
 
 const profilePost = async(req, res) => {
-     
    try {
-
-      const imageURL = req.file.filename
-      const userName = req.body.userName
       const user = req.headers.user
-
-      const response = new ProfileSchema({
-         user : user,
-         adminProfile : {
-            profileImage : imageURL,
-            userName : userName,
-         }
-      })
-
+      const userName = req.body.userName
       const ifUserExits = await ProfileSchema.findOne({"user" : user})
 
-      if(!ifUserExits){
+      const imageURL = req.file 
+         ? req.file.filename 
+         : (ifUserExits && ifUserExits.adminProfile ? ifUserExits.adminProfile.profileImage : "");
 
-         const result = await response.save()
+      if(!ifUserExits){
+         const newProfile = new ProfileSchema({
+            user : user,
+            adminProfile : {
+               profileImage : imageURL,
+               userName : userName,
+            }
+         })
+
+         const result = await newProfile.save()
          
          if(result){
             res.json({
@@ -37,13 +36,20 @@ const profilePost = async(req, res) => {
 
       }else{
 
-         const result = await ProfileSchema.updateOne({
-            _id : ifUserExits._id , 
-            $set : response
-         })
+         const updatePayload = {
+            "adminProfile.userName": userName
+         };
+         if (imageURL) {
+            updatePayload["adminProfile.profileImage"] = imageURL;
+         }
+
+         const result = await ProfileSchema.updateOne(
+            { _id : ifUserExits._id },
+            { $set : updatePayload }
+         )
 
          console.log("ifUserExits", result)
-         if(result.modifiedCount === 1){
+         if(result.modifiedCount >= 1 || result.acknowledged){
             res.json({
                success : "Update profile success",
                status : 200 
@@ -57,6 +63,7 @@ const profilePost = async(req, res) => {
       }
 
    } catch (error) {
+      console.log("profilePost error:", error)
       res.json({warning: "Something went wrong"})
    }
 }

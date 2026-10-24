@@ -2,7 +2,6 @@ const WhatIDoSchema = require("../../Models/WhatIDoSchema")
 
 
 const getWhatIDo = async (req, res) => {
-   // const {education, experience, headers } = (req.body)
    const user = req.headers.user
 
    try {
@@ -10,18 +9,28 @@ const getWhatIDo = async (req, res) => {
       const response = await WhatIDoSchema.find({user: user})
 
       if(req.originalUrl === "/admin/getWhatIDoing"){
-         if(response[0].whatWeDo){
+         if(response && response.length > 0 && response[0].whatWeDo){
             res.json({
                success : "SuccessFully Get data",
-               response : response[0].whatWeDo.whatIDoing
+               response : response[0].whatWeDo.whatIDoing || []
+            })
+         } else {
+            res.json({
+               success : "SuccessFully Get data",
+               response : []
             })
          }
 
       }else if(req.originalUrl === "/admin/getWhatIDid"){
-         if(response[0].whatWeDo){
+         if(response && response.length > 0 && response[0].whatWeDo){
             res.json({
                success : "SuccessFully Get data",
-               response : response[0].whatWeDo.getWhatIDid
+               response : response[0].whatWeDo.getWhatIDid || []
+            })
+         } else {
+            res.json({
+               success : "SuccessFully Get data",
+               response : []
             })
          }
       }
